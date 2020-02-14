@@ -9,11 +9,11 @@ initialAlpha = 0.0
 initialTime = 0.0
 
 timeStep = 0.01
-maxTime = 20.0
+maxTime = 5.0
 gravity = 9.8
 pendulumLength = 2.0
-mass = 2
-plotType = "energy"
+mass = 1
+plotType = "angle"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
