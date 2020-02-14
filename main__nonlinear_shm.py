@@ -13,7 +13,7 @@ maxTime = 20.0
 gravity = 9.8
 pendulumLength = 2.0
 mass = 2
-plotType = "velocity"
+plotType = "energy"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
