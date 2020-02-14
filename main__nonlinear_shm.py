@@ -15,8 +15,8 @@ gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 3.0
-drivingFrequency = mass * pendulumLength
+drivingForce = 0.0
+drivingFrequency = 0.0
 plotType = "angle"
 
 if plotType == "energy":
