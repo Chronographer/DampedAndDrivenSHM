@@ -9,10 +9,6 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
 
     plotTable = []
     timeTable = []
-    print("\n")
-    print("before loop")
-    print("theta is: " + str(currentTheta) + " time is: " + str(currentTime))
-    print("\n")
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
@@ -21,22 +17,13 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
 
-        print("in loop before clamp")
-        print("theta is: " + str(currentTheta) + " time is: " + str(currentTime))
-        print("\n")
-
         if currentTheta > np.pi:
             currentTheta = currentTheta - 2 * np.pi
         elif currentTheta < - np.pi:
             currentTheta = currentTheta + 2 * np.pi
 
-        print("in loop after clamp")
-        print("pi is: " + str(np.pi))
-        print("theta is: " + str(currentTheta) + " time is: " + str(currentTime))
-        print("\n")
-
         timeTable.append(currentTime)
-        if plotType == "energy":
+        if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically
             plotTable.append(currentEnergy)
         elif plotType == "angle":
             plotTable.append(currentTheta)
