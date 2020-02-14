@@ -19,8 +19,10 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
 
         if currentTheta > np.pi:
             currentTheta = currentTheta - 2 * np.pi
+            print("angle was clamped by -2*pi")
         elif currentTheta < - np.pi:
             currentTheta = currentTheta + 2 * np.pi
+            print("angle was clamped by + 2*pi")
 
         timeTable.append(currentTime)
         if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically

@@ -11,7 +11,7 @@ initialTime = 0.0
 timeStep = 0.01
 maxTime = 5.0
 gravity = 9.8
-pendulumLength = 2.0
+pendulumLength = 1.0
 mass = 1
 plotType = "angle"
 
