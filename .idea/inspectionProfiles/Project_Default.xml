@@ -5,6 +5,7 @@
       <option name="ignoredErrors">
         <list>
           <option value="E501" />
+          <option value="E265" />
         </list>
       </option>
     </inspection_tool>
@@ -22,6 +23,7 @@
           <option value="shm_eulercromer.matplotlib" />
           <option value="numpy" />
           <option value="main__nonlinear_shm.matplotlib" />
+          <option value="shm_driven.matplotlib" />
         </list>
       </option>
     </inspection_tool>

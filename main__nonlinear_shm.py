@@ -1,18 +1,22 @@
 import shm_eulercromer
+import shm_driven
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-initialTheta = np.pi / 4
+initialTheta = 0.2
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
 timeStep = 0.01
-maxTime = 5.0
+maxTime = 20.0
 gravity = 9.8
 pendulumLength = 1.0
-mass = 1
+mass = 1.0
+dragCoefficient = 1.0
+drivingForce = 3.0
+drivingFrequency = mass * pendulumLength
 plotType = "angle"
 
 if plotType == "energy":
@@ -24,11 +28,16 @@ elif plotType == "velocity":
 elif plotType == "acceleration":
     yAxisLabel = "Acceleration (m/s^2)"
 
-shm_eulercromer.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType)
+shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotType)
+
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "angle")
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "velocity")
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "acceleration")
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "energy")
 
 plt.legend(loc="upper right")
 plt.grid(True)
-plt.suptitle("SHM as computed using the Euler-Cromer methods")
+plt.suptitle("Driven harmonic motion")
 plt.xlabel("Time (sec)")
 plt.ylabel(yAxisLabel)
 plt.show()
