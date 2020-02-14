@@ -24,7 +24,7 @@ elif plotType == "velocity":
 elif plotType == "acceleration":
     yAxisLabel = "Acceleration (m/s^2)"
 
-shm_eulercromer.eulercromer(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType)
+shm_eulercromer.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType)
 
 plt.legend(loc="upper right")
 plt.grid(True)

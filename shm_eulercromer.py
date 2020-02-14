@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 
 
-def eulercromer(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType):
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType):
     currentTheta = initialTheta
     currentOmega = initialOmega
     currentTime = initialTime
 
-    initialEnergy = (0.5) * mass * pendulumLength**2 * (currentOmega**2 + (gravity / pendulumLength) * currentTheta**2)
+    initialEnergy = 0.5 * mass * pendulumLength**2 * (currentOmega**2 + (gravity / pendulumLength) * currentTheta**2)
     currentEnergy = initialEnergy
 
     plotTable = []
@@ -16,7 +16,7 @@ def eulercromer(gravity, pendulumLength, initialTheta, initialOmega, initialTime
         currentAlpha = (gravity * currentTheta) / pendulumLength
         currentOmega = currentOmega - currentAlpha * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
-        currentEnergy = currentEnergy + (0.5) * ((mass * pendulumLength * (currentOmega**2 + (gravity / pendulumLength) * currentTheta**2))) * (timeStep)**2 # this is currently incorrect.
+        currentEnergy = currentEnergy + 0.5 * (mass * pendulumLength * (currentOmega ** 2 + (gravity / pendulumLength) * currentTheta ** 2)) * timeStep ** 2  # this is currently incorrect.
         currentTime = currentTime + timeStep
 
         timeTable.append(currentTime)
