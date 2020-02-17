@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotType):
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType):
     currentTheta = initialTheta
     currentOmega = initialOmega
     currentTime = initialTime
@@ -31,20 +31,25 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             print("angle was clamped by + 2*pi")"""
 
         if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically
-            yAxisTable.append(currentEnergy)
-            xAxisTable.append(currentTime)
+            if currentTime > plotStartTime:
+                yAxisTable.append(currentEnergy)
+                xAxisTable.append(currentTime)
         elif plotType == "angle":
-            yAxisTable.append(currentTheta)
-            xAxisTable.append(currentTime)
+            if currentTime > plotStartTime:
+                yAxisTable.append(currentTheta)
+                xAxisTable.append(currentTime)
         elif plotType == "velocity":
-            yAxisTable.append(np.abs(currentOmega))
-            xAxisTable.append(currentTime)
+            if currentTime > plotStartTime:
+                yAxisTable.append(np.abs(currentOmega))
+                xAxisTable.append(currentTime)
         elif plotType == "acceleration":
-            yAxisTable.append(currentAlpha)
-            xAxisTable.append(currentTime)
+            if currentTime > plotStartTime:
+                yAxisTable.append(currentAlpha)
+                xAxisTable.append(currentTime)
         elif plotType == "velocity vs angle":
-            yAxisTable.append(currentOmega)
-            xAxisTable.append(currentTheta)
+            if currentTime > plotStartTime:
+                yAxisTable.append(currentOmega)
+                xAxisTable.append(currentTheta)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
 
