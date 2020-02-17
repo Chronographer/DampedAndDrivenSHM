@@ -15,10 +15,10 @@ gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 0.0
-drivingFrequency = 0.0
-plotStartTime = 0.0  # the time when the first point will be plotted on the graph
-plotType = "angle"
+drivingForce = 10.73
+drivingFrequency = 0.61
+plotStartTime = 100 # the time when the first point will be plotted on the graph
+plotType = "velocity vs angle"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
@@ -36,8 +36,8 @@ elif plotType == "velocity vs angle":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType)
-shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, 1.3, 2.1, plotStartTime, plotType)
+shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType)
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, 0.0, 0.0, plotStartTime, plotType)
 
 #shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "angle")
 #shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "velocity")
