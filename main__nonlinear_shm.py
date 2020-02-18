@@ -1,6 +1,5 @@
 import shm_eulercromer
 import shm_driven
-import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -9,15 +8,15 @@ initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-timeStep = 0.01
-maxTime = 200.0
+timeStep = 0.1
+maxTime = 400.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
 drivingForce = 10.73
-drivingFrequency = 0.61
-plotStartTime = 100 # the time when the first point will be plotted on the graph
+drivingFrequency = 0.54
+plotStartTime = 0  # the time when the first point will be plotted on the graph
 plotType = "velocity vs angle"
 
 if plotType == "energy":
@@ -49,4 +48,5 @@ plt.grid(True)
 plt.suptitle("Driven harmonic motion")
 plt.xlabel(xAxisLabel)
 plt.ylabel(yAxisLabel)
+plt.axis(xmin=-80, xmax=24, ymin=-12, ymax=12)
 plt.show()

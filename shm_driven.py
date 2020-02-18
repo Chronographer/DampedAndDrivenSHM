@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+yAxisTable = []
+xAxisTable = []
+
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType):
     currentTheta = initialTheta
@@ -12,9 +15,6 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     dragFactor = dragCoefficient / mass
 
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
-
-    yAxisTable = []
-    xAxisTable = []
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
@@ -52,5 +52,6 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
                 xAxisTable.append(currentTheta)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-
     plt.plot(xAxisTable, yAxisTable, label=plotType)
+
+
