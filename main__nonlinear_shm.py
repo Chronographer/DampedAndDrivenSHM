@@ -1,6 +1,7 @@
 import shm_eulercromer
 import shm_driven
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 initialTheta = 0.2
@@ -8,16 +9,17 @@ initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-timeStep = 0.1
-maxTime = 400.0
+timeStep = 0.01
+maxTime = 600.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
-dragCoefficient = 1.0
-drivingForce = 10.73
-drivingFrequency = 0.54
-plotStartTime = 0  # the time when the first point will be plotted on the graph
-plotType = "velocity vs angle"
+dragCoefficient = 0.1
+drivingForce = 4.73
+drivingFrequency = np.sqrt(gravity/pendulumLength) - 0.23
+plotStartTime = 400  # the time when the first point will be plotted on the graph
+clamp = False
+plotType = "phaseSpace"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
@@ -31,22 +33,16 @@ elif plotType == "velocity":
 elif plotType == "acceleration":
     yAxisLabel = "Acceleration (m/s^2)"
     xAxisLabel = "Time (sec)"
-elif plotType == "velocity vs angle":
+elif plotType == "phaseSpace":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 
-shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType)
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, 0.0, 0.0, plotStartTime, plotType)
-
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "angle")
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "velocity")
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "acceleration")
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, "energy")
+shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
 plt.legend(loc="upper right")
 plt.grid(True)
 plt.suptitle("Driven harmonic motion")
 plt.xlabel(xAxisLabel)
 plt.ylabel(yAxisLabel)
-plt.axis(xmin=-80, xmax=24, ymin=-12, ymax=12)
+
 plt.show()

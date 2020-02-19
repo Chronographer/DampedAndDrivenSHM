@@ -5,7 +5,7 @@ yAxisTable = []
 xAxisTable = []
 
 
-def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, plotType):
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
     currentTheta = initialTheta
     currentOmega = initialOmega
     currentTime = initialTime
@@ -23,12 +23,11 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
 
-        """if currentTheta > np.pi:
-            currentTheta = currentTheta - 2 * np.pi
-            print("angle was clamped by -2*pi")
-        elif currentTheta < - np.pi:
-            currentTheta = currentTheta + 2 * np.pi
-            print("angle was clamped by + 2*pi")"""
+        if clamp == True:
+            if currentTheta > np.pi:
+                currentTheta = currentTheta - 2 * np.pi
+            elif currentTheta < - np.pi:
+                currentTheta = currentTheta + 2 * np.pi
 
         if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically
             if currentTime > plotStartTime:
@@ -46,7 +45,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             if currentTime > plotStartTime:
                 yAxisTable.append(currentAlpha)
                 xAxisTable.append(currentTime)
-        elif plotType == "velocity vs angle":
+        elif plotType == "phaseSpace":
             if currentTime > plotStartTime:
                 yAxisTable.append(currentOmega)
                 xAxisTable.append(currentTheta)
