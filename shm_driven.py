@@ -9,17 +9,17 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentTheta = initialTheta
     currentOmega = initialOmega
     currentTime = initialTime
+    #currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
 
     naturalFrequency = np.sqrt(gravity/pendulumLength)
-
     dragFactor = dragCoefficient / mass
-
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
         currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
+        #currentEnergy = ((0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2) + currentEnergy) / 2
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
 
@@ -51,6 +51,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
                 xAxisTable.append(currentTheta)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-    plt.plot(xAxisTable, yAxisTable, label=plotType)
+    plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType)
 
 
+"""def separatrix(theta):
+    w ="""
