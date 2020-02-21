@@ -14,7 +14,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     dragFactor = dragCoefficient / mass
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
 
-    while thetaTablePopulator < maxTheta:
+    while thetaTablePopulator <= maxTheta:
         thetaTable.append(thetaTablePopulator)
         thetaTablePopulator = thetaTablePopulator + thetaIncrement
     print(len(thetaTable))
