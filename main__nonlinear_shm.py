@@ -4,21 +4,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-initialTheta = 0.2
+initialTheta = 2.0
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-timeStep = 0.01
-maxTime = 600.0
+timeStep = 0.005
+maxTime = 800.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
-dragCoefficient = 0.1
-drivingForce = 4.73
-drivingFrequency = np.sqrt(gravity/pendulumLength) - 0.23
-plotStartTime = 400  # the time when the first point will be plotted on the graph
-clamp = False
+dragCoefficient = 1.0
+drivingForce = 10.73
+drivingFrequency = 2.35
+plotStartTime = 700  # the time when the first point will be plotted on the graph
+clamp = True
 plotType = "phaseSpace"
 
 if plotType == "energy":
