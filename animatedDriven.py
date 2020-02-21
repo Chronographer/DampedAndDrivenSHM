@@ -17,9 +17,10 @@ def data_gen(t=0):
         naturalFrequency = np.sqrt(gravity/pendulumLength)
         currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
-        t = t + 0.1
+        t = t + timeStep
+
         yield currentTheta, currentOmega
-        print(t)
+        #print(t)
 
 
 def init():

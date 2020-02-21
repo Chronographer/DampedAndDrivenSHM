@@ -14,10 +14,10 @@ gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 10.73
+drivingForce = 10.7
 drivingFrequency = 0.54
 plotStartTime = 0  # the time when the first point will be plotted on the graph
-plotType = "velocity vs angle"
+plotType = "velocity"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
@@ -48,5 +48,5 @@ plt.grid(True)
 plt.suptitle("Driven harmonic motion")
 plt.xlabel(xAxisLabel)
 plt.ylabel(yAxisLabel)
-plt.axis(xmin=-80, xmax=24, ymin=-12, ymax=12)
+#plt.axis(xmin=-80, xmax=24, ymin=-12, ymax=12)  # This is used for the animated version.
 plt.show()
