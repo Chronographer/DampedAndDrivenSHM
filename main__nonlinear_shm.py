@@ -17,7 +17,7 @@ dragCoefficient = 1.0
 drivingForce = 10.7
 drivingFrequency = 0.54
 plotStartTime = 0  # the time when the first point will be plotted on the graph
-plotType = "velocity"
+plotType = "phaseSpace"
 
 if plotType == "energy":
     yAxisLabel = "Energy"
