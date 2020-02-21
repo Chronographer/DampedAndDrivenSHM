@@ -51,8 +51,9 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
                 xAxisTable.append(currentTheta)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-    plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType)
+    #plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType)
+    plt.plot(xAxisTable, yAxisTable, label=plotType)
 
 
 """def separatrix(theta):
-    w ="""
+    w = """
