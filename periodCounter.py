@@ -1,10 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from vpython import *
+import pendulum
+
 
 yAxisTable = []
 xAxisTable = []
 thetaTable = []
 singlePeriodTimeTable = []
+averagePeriodTable = []
 
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
@@ -16,12 +20,14 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
     currentPeriodStartTime = 0
     totalPeriodTime = 0.0
+    pend = pendulum.makependulum(pendulumLength, 1.0)
 
     while thetaTablePopulator <= maxTheta:
         thetaTable.append(thetaTablePopulator)
         thetaTablePopulator = thetaTablePopulator + thetaIncrement
     for i in range(0, len(thetaTable)):
         currentTheta = thetaTable[i]
+
         while currentTime <= maxTime:
             currentAlpha = (gravity * currentTheta) / pendulumLength
             lastOmega = currentOmega
@@ -29,12 +35,15 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             currentTheta = currentTheta + currentOmega * timeStep
             currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
             currentTime = currentTime + timeStep
+            rate(1)
+            pend.rotate(vector(0,0,0), angle=currentTheta, axis=vector(0,0,1))
+            print(currentTheta)
+
 
             if (lastOmega > 0 > currentOmega) or (lastOmega < 0 < currentOmega):
                 currentPeriodTime = currentTime - currentPeriodStartTime
                 singlePeriodTimeTable.append(currentPeriodTime)
                 currentPeriodStartTime = currentTime
-
 
             if clamp == True:
                 if currentTheta > np.pi:
@@ -73,5 +82,9 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         print("period " + str(i) + " was " + str(singlePeriodTimeTable[i]) + " seconds.")
         totalPeriodTime = totalPeriodTime + singlePeriodTimeTable[i]
     averagePeriodTime = totalPeriodTime / len(singlePeriodTimeTable)
+    singlePeriodTimeTable.clear()
     print("\n")
     print("average period is: " + str(averagePeriodTime))
+    averagePeriodTable.append(averagePeriodTime)
+
+

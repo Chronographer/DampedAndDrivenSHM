@@ -1,23 +1,22 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import matplotlib.animation
+import numpy as np
 
 
-def data_gen(t=0):
+def data_gen(currentTime=0):
     currentOmega = 0.0
     currentTheta = 0.2
-    while t <= 400:
+    while currentTime <= 400:
         gravity = 9.8
         pendulumLength = 1.0
         timeStep = 0.1
         dragFactor = 1.0
         drivingAngularAcceleration = 10.73
-        currentTime = t
         drivingFrequency = 0.54
         naturalFrequency = np.sqrt(gravity/pendulumLength)
         currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
-        t = t + timeStep
+        currentTime = currentTime + timeStep
 
         yield currentTheta, currentOmega
         #print(t)
@@ -46,6 +45,7 @@ def run(data):
 
 
 print("before ani =")
+
 ani = matplotlib.animation.FuncAnimation(fig, run, data_gen, interval=1, repeat=False)
 print("before plt.show")
 plt.show()
