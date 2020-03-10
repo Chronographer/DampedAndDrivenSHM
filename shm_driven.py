@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import vpython
 import numpy as np
 
 yAxisTable = []

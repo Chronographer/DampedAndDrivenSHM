@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from vpython import *
 import numpy as np
 import shm_eulercromer
 import shm_driven
@@ -19,10 +18,10 @@ gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 10.107
-drivingFrequency = 0.54
+drivingForce = 0
+drivingFrequency = 0
 plotStartTime = 200  # the time when the first point will be plotted on the graph
-clamp = False
+clamp = True
 plotType = "phaseSpace"
 
 
@@ -42,8 +41,8 @@ elif plotType == "phaseSpace":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 
-#periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
 plt.legend(loc="upper right")
 plt.grid(True)

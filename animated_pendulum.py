@@ -96,11 +96,11 @@ if __name__ == "__main__":
 
 
 while currentTime <= maxTime:
-        currentAlpha = (gravity * currentTheta) / pendulumLength
-        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
-        lastTheta = currentTheta
-        currentTheta = currentTheta + currentOmega * timeStep
-        currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
-        currentTime = currentTime + timeStep
-        rate(60)
-        pendulum.rotate(origin=vector(0,0,0), angle=currentTheta-lastTheta, axis=vector(0,0,1))
+    currentAlpha = (gravity * currentTheta) / pendulumLength
+    currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+    lastTheta = currentTheta
+    currentTheta = currentTheta + currentOmega * timeStep
+    currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
+    currentTime = currentTime + timeStep
+    rate(60)
+    pendulum.rotate(origin=vector(0,0,0), angle=currentTheta-lastTheta, axis=vector(0,0,1))

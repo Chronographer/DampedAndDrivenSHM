@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from vpython import *
-import pendulum
+
 
 
 yAxisTable = []
@@ -20,7 +19,6 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
     currentPeriodStartTime = 0
     totalPeriodTime = 0.0
-    pend = pendulum.makependulum(pendulumLength, 1.0)
 
     while thetaTablePopulator <= maxTheta:
         thetaTable.append(thetaTablePopulator)
@@ -35,10 +33,6 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             currentTheta = currentTheta + currentOmega * timeStep
             currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
             currentTime = currentTime + timeStep
-            rate(1)
-            pend.rotate(vector(0,0,0), angle=currentTheta, axis=vector(0,0,1))
-            print(currentTheta)
-
 
             if (lastOmega > 0 > currentOmega) or (lastOmega < 0 < currentOmega):
                 currentPeriodTime = currentTime - currentPeriodStartTime
@@ -75,8 +69,8 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
                 exit("Error: '" + str(plotType) + "' is not a valid plot type!")
         currentTime = initialTime
         currentPeriodStartTime = currentTime
-    #plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType) # plots with points instead of a line
-    plt.plot(xAxisTable, yAxisTable, label=plotType)
+    plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType) # plots with points instead of a line
+    #plt.plot(xAxisTable, yAxisTable, label=plotType)
 
     for i in range(0, len(singlePeriodTimeTable)):
         print("period " + str(i) + " was " + str(singlePeriodTimeTable[i]) + " seconds.")
