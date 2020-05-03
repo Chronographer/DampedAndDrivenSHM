@@ -37,16 +37,16 @@ def makependulum(pendulumLength, radius_sphere):
     xbar = (length_display-radius_sphere) / 2.0
     xball = pendulumLength + radius_sphere / 2.0
     #colors
-    pedestalcolor = vector(0.4, 0.4, 0.5)
+    pedestalColor = vector(0.4, 0.4, 0.5)
 
     #sets scene center, and physical dimensions to useful values.
     scene.center = top-vector(0, pendulumLength / 2, 0)
     scene.height = scene.width = 400
 
     #construct fixed apparatus
-    pedestal = box(pos=top-vector(0, hpedestal/2., offset), height=1.1*hpedestal, length=wpedestal, width=wpedestal, color=pedestalcolor)
-    base = box(pos=top-vector(0, hpedestal+tbase/2., offset), height=tbase, length=wbase, width=wbase, color=pedestalcolor)
-    axle = cylinder(pos=top-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4., color=color.yellow)
+    pedestal = box(pos=top-vector(0, hpedestal/2.0, offset), height=1.1*hpedestal, length=wpedestal, width=wpedestal, color=pedestalColor)
+    base = box(pos=top-vector(0, hpedestal+tbase/2.0, offset), height=tbase, length=wbase, width=wbase, color=pedestalColor)
+    axle = cylinder(pos=top-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4.0, color=color.yellow)
 
     #construct moving portion as a COMPOUND, originally sticks out along x-axis
     bar = box(pos=vector(xbar, 0, 0), size=vector(length_display, bard, bard), color=color.red)
@@ -60,6 +60,7 @@ def makependulum(pendulumLength, radius_sphere):
 
     return pendulum
 
+
 #simple debug thing to do if run this code as main program:
 if __name__ == "__main__":
     from vpython import scene, rotate, pi
@@ -68,7 +69,7 @@ if __name__ == "__main__":
     #scene.title = "Simple Pendulum"
     Lbar = 0.5         # physical length of bar
     Rsphere = 0.05     # radius of sphere
-    pendulum = makependulum(Lbar,Rsphere)
+    pendulum = makependulum(Lbar, Rsphere)
 
     gravity = 9.8
     mass = 1.0

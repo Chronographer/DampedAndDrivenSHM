@@ -4,23 +4,25 @@ import shm_eulercromer
 import shm_driven
 import amplitude_dependant_anharmonic
 import periodCounter
+import shm_poincare
 
 initialTheta = 0.2
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-maxTheta = 0.2
+maxTheta = 4
 thetaIncrement = 0.1
-timeStep = 0.005
-maxTime = 400.0
+timeStep = 0.01
+maxTime = 300.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 0
-drivingFrequency = 0
-plotStartTime = 200  # the time when the first point will be plotted on the graph
+drivingForce = 10
+drivingFrequency = 0.53
+
+plotStartTime = 280  # the time when the first point will be plotted on the graph
 clamp = True
 plotType = "phaseSpace"
 
@@ -43,7 +45,8 @@ elif plotType == "phaseSpace":
 
 periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-
+#amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 plt.legend(loc="upper right")
 plt.grid(True)
 plt.suptitle("Driven harmonic motion")

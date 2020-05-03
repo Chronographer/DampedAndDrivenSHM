@@ -38,7 +38,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
                 singlePeriodTimeTable.append(currentPeriodTime)
                 currentPeriodStartTime = currentTime
 
-            if clamp == True:
+            if clamp is True:
                 if currentTheta > np.pi:
                     currentTheta = currentTheta - 2 * np.pi
                 elif currentTheta < - np.pi:

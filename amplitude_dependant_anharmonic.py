@@ -28,7 +28,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
             currentTime = currentTime + timeStep
 
-            if clamp == True:
+            if clamp is True:
                 if currentTheta > np.pi:
                     currentTheta = currentTheta - 2 * np.pi
                 elif currentTheta < - np.pi:
@@ -57,5 +57,5 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             else:
                 exit("Error: '" + str(plotType) + "' is not a valid plot type!")
         currentTime = initialTime
-    #plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType) # plots with points instead of a line
-    plt.plot(xAxisTable, yAxisTable, label=plotType)
+    plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType) # plots with points instead of a line
+    #plt.plot(xAxisTable, yAxisTable, label=plotType)

@@ -25,7 +25,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             print("angle was clamped by + 2*pi")
 
         timeTable.append(currentTime)
-        if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically
+        if plotType == "energy":  # this block allows the graph axis labels and legend labels to update automatically
             plotTable.append(currentEnergy)
         elif plotType == "angle":
             plotTable.append(currentTheta)

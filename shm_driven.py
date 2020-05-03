@@ -23,13 +23,13 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
 
-        if clamp == True:
+        if clamp is True:
             if currentTheta > np.pi:
                 currentTheta = currentTheta - 2 * np.pi
             elif currentTheta < - np.pi:
                 currentTheta = currentTheta + 2 * np.pi
 
-        if plotType == "energy":  # this block deals allows the graph axis labels and legend labels to update automatically
+        if plotType == "energy":  # this block allows the graph axis labels and legend labels to update automatically
             if currentTime > plotStartTime:
                 yAxisTable.append(currentEnergy)
                 xAxisTable.append(currentTime)
@@ -51,8 +51,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
                 xAxisTable.append(currentTheta)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-    #plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType)
-    plt.plot(xAxisTable, yAxisTable, label=plotType)
+    plt.plot(xAxisTable, yAxisTable, 'b.', ms=1.25, label=plotType)
+    #plt.plot(xAxisTable, yAxisTable, label=plotType)
 
 
 """def separatrix(theta):
