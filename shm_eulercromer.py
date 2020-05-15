@@ -7,8 +7,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentOmega = initialOmega
     currentTime = initialTime
 
-    plotTable = []
-    timeTable = []
+    plotList = []
+    timeList = []
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
@@ -24,16 +24,16 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             currentTheta = currentTheta + 2 * np.pi
             print("angle was clamped by + 2*pi")
 
-        timeTable.append(currentTime)
+        timeList.append(currentTime)
         if plotType == "energy":  # this block allows the graph axis labels and legend labels to update automatically
-            plotTable.append(currentEnergy)
+            plotList.append(currentEnergy)
         elif plotType == "angle":
-            plotTable.append(currentTheta)
+            plotList.append(currentTheta)
         elif plotType == "velocity":
-            plotTable.append(currentOmega)
+            plotList.append(currentOmega)
         elif plotType == "acceleration":
-            plotTable.append(currentAlpha)
+            plotList.append(currentAlpha)
         else:
             exit("Error: '" + str(plotType) + "' is not a valid plot type!")
 
-    plt.plot(timeTable, plotTable, label=plotType)
+    plt.plot(timeList, plotList, label=plotType)

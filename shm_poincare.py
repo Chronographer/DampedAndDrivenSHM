@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-yAxisTable = []
-xAxisTable = []
+yAxisList = []
+xAxisList = []
 
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
@@ -11,7 +11,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentTime = initialTime
     periodTimer = 0
 
-    naturalFrequency = np.sqrt(gravity/pendulumLength)
+    naturalFrequency = np.sqrt(gravity / pendulumLength)
     dragFactor = dragCoefficient / mass
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
 
@@ -34,28 +34,28 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             periodTimer = 0
             if plotType == "energy":  # this block allows the graph axis labels and legend labels to update automatically
                 if currentTime > plotStartTime:
-                    yAxisTable.append(currentEnergy)
-                    xAxisTable.append(currentTime)
+                    yAxisList.append(currentEnergy)
+                    xAxisList.append(currentTime)
             elif plotType == "angle":
                 if currentTime > plotStartTime:
-                    yAxisTable.append(currentTheta)
-                    xAxisTable.append(currentTime)
+                    yAxisList.append(currentTheta)
+                    xAxisList.append(currentTime)
             elif plotType == "velocity":
                 if currentTime > plotStartTime:
-                    yAxisTable.append(np.abs(currentOmega))
-                    xAxisTable.append(currentTime)
+                    yAxisList.append(np.abs(currentOmega))
+                    xAxisList.append(currentTime)
             elif plotType == "acceleration":
                 if currentTime > plotStartTime:
-                    yAxisTable.append(currentAlpha)
-                    xAxisTable.append(currentTime)
+                    yAxisList.append(currentAlpha)
+                    xAxisList.append(currentTime)
             elif plotType == "phaseSpace":
                 if currentTime > plotStartTime:
-                    yAxisTable.append(currentOmega)
-                    xAxisTable.append(currentTheta)
+                    yAxisList.append(currentOmega)
+                    xAxisList.append(currentTheta)
             else:
                 exit("Error: '" + str(plotType) + "' is not a valid plot type!")
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)
-    plt.plot(xAxisTable, yAxisTable, label=plotType)
+    plt.plot(xAxisList, yAxisList, label=plotType)
 
 
 """def separatrix(theta):

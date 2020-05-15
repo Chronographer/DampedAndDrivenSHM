@@ -13,7 +13,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     currentOmega = initialOmega
     currentTime = initialTime
     thetaListPopulator = initialTheta
-    naturalFrequency = np.sqrt(gravity/pendulumLength)
+    naturalFrequency = np.sqrt(gravity / pendulumLength)
     dragFactor = dragCoefficient / mass
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
     currentPeriodStartTime = 0

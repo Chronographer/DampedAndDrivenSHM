@@ -1,5 +1,4 @@
 """Make a VPython simple pendulum with pedestal and stand.
-
 Moving system is ball attached to (potentially massive) bar.
 """
 from vpython import *
@@ -22,34 +21,33 @@ def makependulum(pendulumLength, radius_sphere):
       -- sphere -- spherical bob with "mass" of pendulum
     """
     # dimensions of structures
-    bard = 0.015             # thickness of bar
+    barDiameter = 0.015
     length_display = pendulumLength + radius_sphere
-    # show bar a bit longer than physical,
-    #    to overlap axle
+    # show bar a bit longer than physical, to overlap axle
 
-    hpedestal = 1.3 * pendulumLength    # height of pedestal
-    wpedestal = 0.1               # width of pedestal
-    tbase = 0.05                  # thickness of base
-    offset = 4.*radius_sphere     # from center of pedestal to center of bar
-    wbase = 4.*offset             # width of base
-    top = vector(0, 0, 0)           # top of bar
+    pedestalHeight = 1.3 * pendulumLength
+    pedestalWidth = 0.1
+    baseThickness = 0.05
+    offset = 4.0 * radius_sphere     # from center of pedestal to center of bar
+    baseWidth = 4.0 * offset
+    barTop = vector(0, 0, 0)
 
-    xbar = (length_display-radius_sphere) / 2.0
+    xbar = (length_display - radius_sphere) / 2.0
     xball = pendulumLength + radius_sphere / 2.0
     #colors
     pedestalColor = vector(0.4, 0.4, 0.5)
 
     #sets scene center, and physical dimensions to useful values.
-    scene.center = top-vector(0, pendulumLength / 2, 0)
+    scene.center = barTop - vector(0, pendulumLength / 2, 0)
     scene.height = scene.width = 400
 
     #construct fixed apparatus
-    pedestal = box(pos=top-vector(0, hpedestal/2.0, offset), height=1.1*hpedestal, length=wpedestal, width=wpedestal, color=pedestalColor)
-    base = box(pos=top-vector(0, hpedestal+tbase/2.0, offset), height=tbase, length=wbase, width=wbase, color=pedestalColor)
-    axle = cylinder(pos=top-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4.0, color=color.yellow)
+    pedestal = box(pos=barTop-vector(0, pedestalHeight/2.0, offset), height=1.1*pedestalHeight, length=pedestalWidth, width=pedestalWidth, color=pedestalColor)
+    base = box(pos=barTop-vector(0, pedestalHeight+baseThickness/2.0, offset), height=baseThickness, length=baseWidth, width=baseWidth, color=pedestalColor)
+    axle = cylinder(pos=barTop-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4.0, color=color.yellow)
 
     #construct moving portion as a COMPOUND, originally sticks out along x-axis
-    bar = box(pos=vector(xbar, 0, 0), size=vector(length_display, bard, bard), color=color.red)
+    bar = box(pos=vector(xbar, 0, 0), size=vector(length_display, barDiameter, barDiameter), color=color.red)
     ball = sphere(pos=vector(xball, 0, 0), radius=radius_sphere, color=color.green)
     pendulum = compound([bar, ball])
 
@@ -67,9 +65,9 @@ if __name__ == "__main__":
     import vpython
     import numpy as np
     #scene.title = "Simple Pendulum"
-    Lbar = 0.5         # physical length of bar
-    Rsphere = 0.05     # radius of sphere
-    pendulum = makependulum(Lbar, Rsphere)
+    barLength = 0.5
+    sphereRadius = 0.05
+    pendulum = makependulum(barLength, sphereRadius)
 
     gravity = 9.8
     mass = 1.0
@@ -82,7 +80,7 @@ if __name__ == "__main__":
     drivingFrequency = 0.54
     currentTheta = 90
     currentOmega = 0.0
-    naturalFrequency = np.sqrt(gravity/pendulumLength)
+    naturalFrequency = np.sqrt(gravity / pendulumLength)
     dragFactor = dragCoefficient / mass
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
     lastTheta = 0
