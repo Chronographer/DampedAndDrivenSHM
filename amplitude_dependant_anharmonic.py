@@ -57,5 +57,5 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             else:
                 exit("Error: '" + str(plotType) + "' is not a valid plot type!")
         currentTime = initialTime
-    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType) # plots with points instead of a line
+    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
     #plt.plot(xAxisList, yAxisList, label=plotType)

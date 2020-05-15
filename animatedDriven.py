@@ -52,4 +52,3 @@ plt.show()
 print("after plt.show()")
 #ani.save("your_argument_is_invalid.mp4")
 print("after ani.save()")
-
