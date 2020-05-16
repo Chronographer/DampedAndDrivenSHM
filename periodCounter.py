@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#  TO DO: Make different values of theta plot separately, preferably with different colors or something.
 
 yAxisList = []
 xAxisList = []

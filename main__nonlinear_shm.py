@@ -6,15 +6,15 @@ import amplitude_dependant_anharmonic
 import periodCounter
 import shm_poincare
 
-initialTheta = 0.2
+initialTheta = 0.8
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-maxTheta = 4
-thetaIncrement = 0.1
+maxTheta = 0.9
+thetaIncrement = 0.05
 timeStep = 0.01
-maxTime = 300.0
+maxTime = 1200.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
@@ -22,7 +22,7 @@ dragCoefficient = 1.0
 drivingForce = 10
 drivingFrequency = 0.53
 
-plotStartTime = 280  # the time when the first point will be plotted on the graph
+plotStartTime = 1000  # the time when the first point will be plotted on the graph
 clamp = True
 plotType = "phaseSpace"
 
@@ -43,9 +43,9 @@ elif plotType == "phaseSpace":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 
-periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-#amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 plt.legend(loc="upper right")
 plt.grid(True)
