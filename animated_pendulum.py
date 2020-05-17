@@ -4,7 +4,7 @@ Moving system is ball attached to (potentially massive) bar.
 from vpython import *
 
 
-def makependulum(pendulumLength, radius_sphere):
+def makePendulum(pendulumLength, radius_sphere):
     """make a single rigid pendulum using VPython objects.
 
     INPUT
@@ -59,27 +59,18 @@ def makependulum(pendulumLength, radius_sphere):
     return pendulum
 
 
-#simple debug thing to do if run this code as main program:
-if __name__ == "__main__":
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
     from vpython import scene, rotate, pi
     import vpython
     import numpy as np
     #scene.title = "Simple Pendulum"
     barLength = 0.5
     sphereRadius = 0.05
-    pendulum = makependulum(barLength, sphereRadius)
+    pendulum = makePendulum(barLength, sphereRadius)
 
-    gravity = 9.8
-    mass = 1.0
-    dragCoefficient = 1.0
-    currentTime = 0
-    maxTime = 400
-    pendulumLength = 1.0
-    timeStep = 0.005
-    drivingForce = 10.2
-    drivingFrequency = 0.54
-    currentTheta = 90
-    currentOmega = 0.0
+    currentTime = initialTime
+    currentTheta = initialTheta
+    currentOmega = initialOmega
     naturalFrequency = np.sqrt(gravity / pendulumLength)
     dragFactor = dragCoefficient / mass
     drivingAngularAcceleration = mass * pendulumLength * drivingForce
@@ -87,13 +78,12 @@ if __name__ == "__main__":
     pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta, axis=vector(0, 0, 1))
     vpython.sleep(1)
 
-
-while currentTime <= maxTime:
-    currentAlpha = (gravity * currentTheta) / pendulumLength
-    currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
-    lastTheta = currentTheta
-    currentTheta = currentTheta + currentOmega * timeStep
-    currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
-    currentTime = currentTime + timeStep
-    rate(60)
-    pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta-lastTheta, axis=vector(0, 0, 1))
+    while currentTime <= maxTime:
+        currentAlpha = (gravity * currentTheta) / pendulumLength
+        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+        lastTheta = currentTheta
+        currentTheta = currentTheta + currentOmega * timeStep
+        currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
+        currentTime = currentTime + timeStep
+        rate(60)
+        pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta-lastTheta, axis=vector(0, 0, 1))
