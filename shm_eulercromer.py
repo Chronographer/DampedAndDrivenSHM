@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+"""Models simple harmonic motion, without drag force or a driving force, using the Euler-Cromer method."""
+
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, plotType):
     currentTheta = initialTheta

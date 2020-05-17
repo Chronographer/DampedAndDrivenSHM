@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+""" Models simple harmonic motion with the addition of a drag force and a driving force. """
+
 yAxisList = []
 xAxisList = []
 

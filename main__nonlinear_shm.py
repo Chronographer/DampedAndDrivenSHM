@@ -11,10 +11,10 @@ initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-maxTheta = 0.9
-thetaIncrement = 0.05
+maxTheta = 1.0
+thetaIncrement = 0.1
 timeStep = 0.01
-maxTime = 1200.0
+maxTime = 1010.0
 gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
@@ -23,7 +23,7 @@ drivingForce = 10
 drivingFrequency = 0.53
 
 plotStartTime = 1000  # the time when the first point will be plotted on the graph
-clamp = True
+clamp = False
 plotType = "phaseSpace"
 
 
@@ -45,11 +45,11 @@ elif plotType == "phaseSpace":
 
 #periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 plt.legend(loc="upper right")
 plt.grid(True)
-plt.suptitle("Driven harmonic motion")
+plt.suptitle("Driven harmonic motion: " + str(plotType))
 plt.xlabel(xAxisLabel)
 plt.ylabel(yAxisLabel)
 

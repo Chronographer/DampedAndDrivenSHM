@@ -6,6 +6,8 @@ import numpy as np
 yAxisList = []
 xAxisList = []
 thetaList = []
+colorDotList = ['b.', 'g.', 'r.', 'c.', 'm.', 'y.', 'b.']
+colorList = ['b', 'g', 'r', 'c', 'm', 'y', 'b']
 
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
@@ -22,6 +24,10 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     print("thetaList has " + str(len(thetaList)) + " elements")
     for i in range(0, len(thetaList)):
         currentTheta = thetaList[i]
+        currentTime = initialTime
+        currentOmega = initialOmega
+        xAxisList.clear()
+        yAxisList.clear()
         print("current theta is: " + str(currentTheta))
         while currentTime <= maxTime:
             currentAlpha = (gravity * currentTheta) / pendulumLength
@@ -38,10 +44,8 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
 
             if currentTime > plotStartTime:
                 handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
-
-        currentTime = initialTime
-    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
-    #plt.plot(xAxisList, yAxisList, label=plotType)
+        plt.plot(xAxisList, yAxisList, colorDotList[i], ms=1.25, label="initial theta: " + str(round(thetaList[i], 3)))  # plots with points instead of a line
+        #plt.plot(xAxisList, yAxisList, label=plotType)
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
