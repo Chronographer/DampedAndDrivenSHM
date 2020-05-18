@@ -25,6 +25,9 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         thetaListPopulator = thetaListPopulator + thetaIncrement
     for i in range(0, len(thetaList)):
         currentTheta = thetaList[i]
+        currentOmega = initialOmega
+        currentTime = initialTime
+        currentPeriodStartTime = currentTime
 
         while currentTime <= maxTime:
             currentAlpha = (gravity * currentTheta) / pendulumLength
@@ -45,40 +48,41 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
                 elif currentTheta < - np.pi:
                     currentTheta = currentTheta + 2 * np.pi
 
-            if plotType == "energy":  # this block deals with allowing the graph axis labels and legend labels to update automatically
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentEnergy)
-                    xAxisList.append(currentTime)
-            elif plotType == "angle":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentTheta)
-                    xAxisList.append(currentTime)
-            elif plotType == "velocity":
-                if currentTime > plotStartTime:
-                    yAxisList.append(np.abs(currentOmega))
-                    xAxisList.append(currentTime)
-            elif plotType == "acceleration":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentAlpha)
-                    xAxisList.append(currentTime)
-            elif plotType == "phaseSpace":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentOmega)
-                    xAxisList.append(currentTheta)
-            else:
-                exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-        currentTime = initialTime
-        currentPeriodStartTime = currentTime
-    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
-    #plt.plot(xAxisList, yAxisList, label=plotType)
+            if currentTime >= plotStartTime:
+                handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
 
-    for i in range(0, len(singlePeriodTimeList)):
-        print("period " + str(i) + " was " + str(singlePeriodTimeList[i]) + " seconds.")
-        totalPeriodTime = totalPeriodTime + singlePeriodTimeList[i]
-    averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
-    singlePeriodTimeList.clear()
-    print("\n")
-    print("average period is: " + str(averagePeriodTime))
-    averagePeriodList.append(averagePeriodTime)
+        for index in range(0, len(singlePeriodTimeList)):
+            totalPeriodTime = totalPeriodTime + singlePeriodTimeList[i]
+        averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
+        singlePeriodTimeList.clear()
+        print("average period for initial theta of " + str(thetaList[i]) + " was: " + str(averagePeriodTime) + " seconds")
+        averagePeriodList.append(averagePeriodTime)
+
+    if plotType == "periodVsAmplitude":
+        xAxisList = thetaList
+        yAxisList = averagePeriodList
+
+    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
+    plt.plot(xAxisList, yAxisList, label=plotType)
 
 
+def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
+    if plotType == "energy":
+        yAxisList.append(currentEnergy)
+        xAxisList.append(currentTime)
+    elif plotType == "angle":
+        yAxisList.append(currentTheta)
+        xAxisList.append(currentTime)
+    elif plotType == "velocity":
+        yAxisList.append(np.abs(currentOmega))
+        xAxisList.append(currentTime)
+    elif plotType == "acceleration":
+        yAxisList.append(currentAlpha)
+        xAxisList.append(currentTime)
+    elif plotType == "phaseSpace":
+        yAxisList.append(currentOmega)
+        xAxisList.append(currentTheta)
+    elif plotType == "periodVsAmplitude":  # do nothing here, as this can only be plotted once for each initial theta, not once each time step.
+        placeHolderValue = 0
+    else:
+        exit("Error: '" + str(plotType) + "' is not a valid plot type!")

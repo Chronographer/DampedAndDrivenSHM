@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 """ This program runs the driven and damped harmonic motion simulation for multiple initial values of theta """
 
 yAxisList = []
 xAxisList = []
 thetaList = []
-colorDotList = ['b.', 'g.', 'r.', 'c.', 'm.', 'y.', 'b.']
+colorDotList = ['b.', 'g.', 'r.', 'c.', 'm.', 'y.', 'k.', 'b.', 'g.', 'r.', 'c.', 'm.', 'y.', 'k.']
 colorList = ['b', 'g', 'r', 'c', 'm', 'y', 'b']
+#tupleColorList = []
 
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
@@ -21,6 +23,8 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     while thetaListPopulator <= maxTheta:
         thetaList.append(thetaListPopulator)
         thetaListPopulator = thetaListPopulator + thetaIncrement
+        """color = (random.randrange(0, 1), random.randrange(0, 1), random.randrange(0, 1))  # this would be used to make a unique color for any number of elements, but I cant quite get it to work and Im not sure its worth it.
+        tupleColorList.append(color)"""
     print("thetaList has " + str(len(thetaList)) + " elements")
     for i in range(0, len(thetaList)):
         currentTheta = thetaList[i]
@@ -45,6 +49,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
             if currentTime > plotStartTime:
                 handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
         plt.plot(xAxisList, yAxisList, colorDotList[i], ms=1.25, label="initial theta: " + str(round(thetaList[i], 3)))  # plots with points instead of a line
+        #plt.plot(xAxisList, yAxisList, fmt='[.][tupleColorList[i]]', label="initial theta: " + str(round(thetaList[i], 3)))
         #plt.plot(xAxisList, yAxisList, label=plotType)
 
 

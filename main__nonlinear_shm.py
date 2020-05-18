@@ -7,10 +7,13 @@ import periodCounter
 import shm_poincare
 import animated_pendulum
 
-initialTheta = np.pi / 2
+initialTheta = 0.01
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
+
+maxTheta = np.pi  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
+thetaIncrement = 0.1  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 
 timeStep = 0.01
 maxTime = 300
@@ -20,12 +23,11 @@ mass = 1.0
 dragCoefficient = 1.0
 drivingForce = 0.0
 drivingFrequency = 0.0
-maxTheta = 1.0  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
-thetaIncrement = 0.1  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
+
 
 plotStartTime = 0  # the time when the first point will be plotted on the graph
 clamp = True
-plotType = "phaseSpace"
+plotType = "periodVsAmplitude"
 
 
 if plotType == "energy":
@@ -43,10 +45,16 @@ elif plotType == "acceleration":
 elif plotType == "phaseSpace":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
+elif plotType == "periodVsAmplitude":
+    yAxisLabel = "Period time (seconds)"
+    xAxisLabel = "Initial angle (radians)"
+else:
+    yAxisLabel = "y axis label was not defined!"
+    xAxisLabel = "x axis label was not defined!"
 
-shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-#periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
