@@ -18,8 +18,8 @@ gravity = 9.8
 pendulumLength = 1.0
 mass = 1.0
 dragCoefficient = 1.0
-drivingForce = 0
-drivingFrequency = 0.53
+drivingForce = 0.0
+drivingFrequency = 0.0
 maxTheta = 1.0  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 thetaIncrement = 0.1  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 
@@ -44,11 +44,11 @@ elif plotType == "phaseSpace":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 
+shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #amplitude_dependant_anharmonic.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
 plt.legend(loc="upper right")
 plt.grid(True)

@@ -22,9 +22,7 @@ def makePendulum(pendulumLength, radius_sphere):
     """
     # dimensions of structures
     barDiameter = 0.015
-    length_display = pendulumLength + radius_sphere
-    # show bar a bit longer than physical, to overlap axle
-
+    length_display = pendulumLength + radius_sphere  # The length of the pendulum shown in the animation (slightly longer than actual length used in calculations so it overlaps the axel)
     pedestalHeight = 1.3 * pendulumLength
     pedestalWidth = 0.1
     baseThickness = 0.05
@@ -32,12 +30,10 @@ def makePendulum(pendulumLength, radius_sphere):
     baseWidth = 4.0 * offset
     barTop = vector(0, 0, 0)
 
-    xbar = (length_display - radius_sphere) / 2.0
-    xball = pendulumLength + radius_sphere / 2.0
-    #colors
+    xBar = (length_display - radius_sphere) / 2.0  # The initial x position of the bar
+    xBall = pendulumLength + radius_sphere / 2.0  # The initial x position of the ball
     pedestalColor = vector(0.4, 0.4, 0.5)
 
-    #sets scene center, and physical dimensions to useful values.
     scene.center = barTop - vector(0, pendulumLength / 2, 0)
     scene.height = scene.width = 400
 
@@ -47,8 +43,8 @@ def makePendulum(pendulumLength, radius_sphere):
     axle = cylinder(pos=barTop-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4.0, color=color.yellow)
 
     #construct moving portion as a COMPOUND, originally sticks out along x-axis
-    bar = box(pos=vector(xbar, 0, 0), size=vector(length_display, barDiameter, barDiameter), color=color.red)
-    ball = sphere(pos=vector(xball, 0, 0), radius=radius_sphere, color=color.green)
+    bar = box(pos=vector(xBar, 0, 0), size=vector(length_display, barDiameter, barDiameter), color=color.red)
+    ball = sphere(pos=vector(xBall, 0, 0), radius=radius_sphere, color=color.green)
     pendulum = compound([bar, ball])
 
     #point the frame in -y direction (which will define theta=0).
@@ -60,7 +56,6 @@ def makePendulum(pendulumLength, radius_sphere):
 
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
-    from vpython import scene, rotate, pi
     import vpython
     import numpy as np
     #scene.title = "Simple Pendulum"
