@@ -34,8 +34,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         if currentTime > plotStartTime:
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
 
-    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency) + "\n" + "time step: " + str(timeStep))
-    #plt.plot(xAxisList, yAxisList, label=plotType)
+    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency) + "\n" + "time step: " + str(timeStep))
+    plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency) + "\n" + "time step: " + str(timeStep))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
