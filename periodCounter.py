@@ -63,7 +63,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         yAxisList = averagePeriodList
 
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
-    plt.plot(xAxisList, yAxisList, label=plotType)
+    plt.plot(xAxisList, yAxisList, label="time step: " + str(timeStep) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
@@ -83,6 +83,6 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
         yAxisList.append(currentOmega)
         xAxisList.append(currentTheta)
     elif plotType == "periodVsAmplitude":  # do nothing here, as this can only be plotted once for each initial theta, not once each time step.
-        placeHolderValue = 0
+        placeHolderValue = 0  # This variable does nothing, it is only here because I need to have some piece of code in the indent or it apparently does not count as an indent and throws a syntax error.
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")

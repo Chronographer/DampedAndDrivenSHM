@@ -57,5 +57,6 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")
 
+
 """def separatrix(theta):
     w = """

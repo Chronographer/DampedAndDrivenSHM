@@ -58,9 +58,9 @@ periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncremen
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
-plt.legend(loc="upper right")
+plt.legend(loc="best")
 plt.grid(True)
-plt.suptitle("Driven harmonic motion: " + str(plotType))
+plt.suptitle("Nonlinear harmonic motion: " + str(plotType))
 plt.xlabel(xAxisLabel)
 plt.ylabel(yAxisLabel)
 
