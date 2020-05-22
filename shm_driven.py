@@ -32,8 +32,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         if currentTime > plotStartTime:
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
 
-    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency) + "\n" + "time step: " + str(timeStep))
-    plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency) + "\n" + "time step: " + str(timeStep))
+    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
+    plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
@@ -52,6 +52,8 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
     elif plotType == "phaseSpace":
         yAxisList.append(currentOmega)
         xAxisList.append(currentTheta)
+    elif plotType == "periodVsAmplitude":
+        exit("Error: Plot type 'periodVsAmplitude' is not a valid plot type for script 'shm_driven' \nThis plot type is only applicable with script 'periodCounter.py' ")
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")
 
