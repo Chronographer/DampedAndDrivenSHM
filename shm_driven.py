@@ -14,12 +14,10 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     #currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
 
     naturalFrequency = np.sqrt(gravity / pendulumLength)
-    dragFactor = dragCoefficient / mass
-    drivingAngularAcceleration = mass * pendulumLength * drivingForce
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
-        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragCoefficient * currentOmega + drivingForce * np.sin(drivingFrequency * currentTime)) * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
         #currentEnergy = ((0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2) + currentEnergy) / 2
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
