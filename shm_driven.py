@@ -5,9 +5,11 @@ import numpy as np
 
 yAxisList = []
 xAxisList = []
+periodTimer = 0.0
 
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
+    global periodTimer
     currentTheta = initialTheta
     currentOmega = initialOmega
     currentTime = initialTime
@@ -22,6 +24,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         #currentEnergy = ((0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2) + currentEnergy) / 2
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
+        periodTimer = periodTimer + timeStep
 
         if clamp is True:
             if currentTheta > np.pi:
@@ -30,13 +33,16 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
                 currentTheta = currentTheta + 2 * np.pi
 
         if currentTime > plotStartTime:
-            handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
+            handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, drivingFrequency)
 
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
-    plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
+    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="drive force: " + str(drivingForce))
+    #plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
+    plt.plot(xAxisList, yAxisList, label="drive force: " + str(drivingForce))
 
 
-def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
+def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, drivingFrequency):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
+    global periodTimer
     if plotType == "energy":
         yAxisList.append(currentEnergy)
         xAxisList.append(currentTime)
@@ -52,6 +58,11 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
     elif plotType == "phaseSpace":
         yAxisList.append(currentOmega)
         xAxisList.append(currentTheta)
+    elif plotType == "poincare":
+        if periodTimer >= drivingFrequency:
+            periodTimer = 0
+            yAxisList.append(currentOmega)
+            xAxisList.append(currentTheta)
     elif plotType == "periodVsAmplitude":
         exit("Error: Plot type 'periodVsAmplitude' is not a valid plot type for script 'shm_driven' \nThis plot type is only applicable with script 'periodCounter.py' ")
     else:

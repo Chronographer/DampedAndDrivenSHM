@@ -30,31 +30,28 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
 
         if periodTimer >= drivingFrequency:
             periodTimer = 0
-            if plotType == "energy":  # this block allows the graph axis labels and legend labels to update automatically
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentEnergy)
-                    xAxisList.append(currentTime)
-            elif plotType == "angle":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentTheta)
-                    xAxisList.append(currentTime)
-            elif plotType == "velocity":
-                if currentTime > plotStartTime:
-                    yAxisList.append(np.abs(currentOmega))
-                    xAxisList.append(currentTime)
-            elif plotType == "acceleration":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentAlpha)
-                    xAxisList.append(currentTime)
-            elif plotType == "phaseSpace":
-                if currentTime > plotStartTime:
-                    yAxisList.append(currentOmega)
-                    xAxisList.append(currentTheta)
-            else:
-                exit("Error: '" + str(plotType) + "' is not a valid plot type!")
+            handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)
     plt.plot(xAxisList, yAxisList, label=plotType)
 
 
-"""def separatrix(theta):
-    w = """
+def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
+    if plotType == "energy":
+        yAxisList.append(currentEnergy)
+        xAxisList.append(currentTime)
+    elif plotType == "angle":
+        yAxisList.append(currentTheta)
+        xAxisList.append(currentTime)
+    elif plotType == "velocity":
+        yAxisList.append(np.abs(currentOmega))
+        xAxisList.append(currentTime)
+    elif plotType == "acceleration":
+        yAxisList.append(currentAlpha)
+        xAxisList.append(currentTime)
+    elif plotType == "phaseSpace":
+        yAxisList.append(currentOmega)
+        xAxisList.append(currentTheta)
+    elif plotType == "periodVsAmplitude":
+        exit("Error: Plot type 'periodVsAmplitude' is not a valid plot type for script 'shm_driven' \nThis plot type is only applicable with script 'periodCounter.py' ")
+    else:
+        exit("Error: '" + str(plotType) + "' is not a valid plot type!")

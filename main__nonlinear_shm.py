@@ -15,17 +15,16 @@ initialTime = 0.0
 maxTheta = np.pi  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 thetaIncrement = 0.1  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 
-timeStep = 0.04
-maxTime = 60
 gravity = 9.8
 pendulumLength = 9.8
 mass = 1.0
 dragCoefficient = 0.5
-drivingForce = 1.2
+drivingForce = 1.1
 drivingFrequency = 2/3
+plotStartTime = 1000 * drivingFrequency  # the time when the first point will be plotted on the graph
+timeStep = 0.01 * drivingFrequency
+maxTime = plotStartTime * 2
 
-
-plotStartTime = 0  # the time when the first point will be plotted on the graph
 clamp = False
 plotType = "phaseSpace"
 
@@ -58,7 +57,7 @@ shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime,
 #shm_poincare.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
-plt.legend(loc="best")
+plt.legend(loc="upper right")
 plt.grid(True)
 plt.suptitle("Nonlinear harmonic motion: " + str(plotType))
 plt.xlabel(xAxisLabel)
