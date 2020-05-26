@@ -10,11 +10,11 @@ def data_gen(currentTime=0):
         gravity = 9.8
         pendulumLength = 1.0
         timeStep = 0.1
-        dragFactor = 1.0
-        drivingAngularAcceleration = 10.73
+        dragCoefficient = 1.0
+        drivingForce = 10.73
         drivingFrequency = 0.54
         naturalFrequency = np.sqrt(gravity / pendulumLength)
-        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragCoefficient * currentOmega + drivingForce * np.sin(drivingFrequency * currentTime)) * timeStep
         currentTheta = currentTheta + currentOmega * timeStep
         currentTime = currentTime + timeStep
 

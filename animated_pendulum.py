@@ -67,15 +67,13 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentTheta = initialTheta
     currentOmega = initialOmega
     naturalFrequency = np.sqrt(gravity / pendulumLength)
-    dragFactor = dragCoefficient / mass
-    drivingAngularAcceleration = mass * pendulumLength * drivingForce
     lastTheta = 0
     pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta, axis=vector(0, 0, 1))
     vpython.sleep(1)
 
     while currentTime <= maxTime:
         currentAlpha = (gravity * currentTheta) / pendulumLength
-        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+        currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragCoefficient * currentOmega + drivingForce * np.sin(drivingFrequency * currentTime)) * timeStep
         lastTheta = currentTheta
         currentTheta = currentTheta + currentOmega * timeStep
         currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2

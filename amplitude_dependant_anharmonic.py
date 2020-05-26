@@ -17,8 +17,6 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     currentTime = initialTime
     thetaListPopulator = initialTheta
     naturalFrequency = np.sqrt(gravity / pendulumLength)
-    dragFactor = dragCoefficient / mass
-    drivingAngularAcceleration = mass * pendulumLength * drivingForce
 
     while thetaListPopulator <= maxTheta:
         thetaList.append(thetaListPopulator)
@@ -35,7 +33,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         print("current theta is: " + str(currentTheta))
         while currentTime <= maxTime:
             currentAlpha = (gravity * currentTheta) / pendulumLength
-            currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragFactor * currentOmega + drivingAngularAcceleration * np.sin(drivingFrequency * currentTime)) * timeStep
+            currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragCoefficient * currentOmega + drivingForce * np.sin(drivingFrequency * currentTime)) * timeStep
             currentTheta = currentTheta + currentOmega * timeStep
             currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
             currentTime = currentTime + timeStep
