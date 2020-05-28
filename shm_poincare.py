@@ -28,7 +28,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             elif currentTheta < - np.pi:
                 currentTheta = currentTheta + 2 * np.pi
 
-        if periodTimer >= drivingFrequency:
+        if periodTimer >= ((np.pi * 2) / drivingFrequency): # 2 pi / drive freq
             periodTimer = 0
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)

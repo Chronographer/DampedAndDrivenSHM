@@ -19,14 +19,14 @@ gravity = 9.8
 pendulumLength = 9.8
 mass = 1.0
 dragCoefficient = 0.5
-drivingForce = 1.1
+drivingForce = 1.2
 drivingFrequency = 2/3
-plotStartTime = 1000 * drivingFrequency  # the time when the first point will be plotted on the graph
-timeStep = 0.01 * drivingFrequency
+plotStartTime = 1000 * ((np.pi * 2) / drivingFrequency)  # the time when the first point will be plotted on the graph
+timeStep = 0.01 * ((np.pi * 2) / drivingFrequency)
 maxTime = plotStartTime * 2
 
-clamp = False
-plotType = "phaseSpace"
+clamp = True
+plotType = "poincare"
 
 
 if plotType == "energy":
@@ -41,7 +41,7 @@ elif plotType == "velocity":
 elif plotType == "acceleration":
     yAxisLabel = "Acceleration (m/s^2)"
     xAxisLabel = "Time (sec)"
-elif plotType == "phaseSpace":
+elif plotType == "phaseSpace" or "poincare":
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 elif plotType == "periodVsAmplitude":

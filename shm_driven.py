@@ -36,9 +36,9 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, drivingFrequency)
 
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
-    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="drive force: " + str(drivingForce))
+    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="drive force: " + str(drivingForce))
     #plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
-    plt.plot(xAxisList, yAxisList, label="drive force: " + str(drivingForce))
+    #plt.plot(xAxisList, yAxisList, label="drive force: " + str(drivingForce))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, drivingFrequency):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
@@ -59,7 +59,7 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
         yAxisList.append(currentOmega)
         xAxisList.append(currentTheta)
     elif plotType == "poincare":
-        if periodTimer >= drivingFrequency:
+        if periodTimer >= ((np.pi * 2) / drivingFrequency):
             periodTimer = 0
             yAxisList.append(currentOmega)
             xAxisList.append(currentTheta)
