@@ -21,12 +21,14 @@ dragCoefficient = 0.5
 drivingForce = 1.2
 drivingFrequency = 2/3
 
-plotStartTime = 1000 * ((np.pi * 2) / drivingFrequency)  # the time when the first point will be plotted on the graph
-timeStep = 0.01 * ((np.pi * 2) / drivingFrequency)
+drivingPeriod = ((np.pi * 2) / drivingFrequency)
+
+plotStartTime = 1000 * drivingPeriod  # the time when the first point will be plotted on the graph
+timeStep = 0.1 * drivingPeriod
 maxTime = plotStartTime * 2
 
 clamp = True
-plotType = "poincare"
+plotType = "energy"
 
 
 if plotType == "energy":

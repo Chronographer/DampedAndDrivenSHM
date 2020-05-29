@@ -1,7 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-#  TO DO: Make different values of theta plot separately, preferably with different colors or something.
+"""
+This script runs the driven and damped oscillator code (additionally computing the length of the period) once for each value of the initialTheta stored in thetaList. thetaList is populated at runtime by adding values 
+from 0 to maxTheta in increments of thetaIncrement. Although all of the plot types work with this script (except for 'poincare'), it is primarily intended to be run with the plot type 'periodVsAmplitude' which will
+plot one data point for each element in thetaList. All other plot types will behave the same as they would normally, but will plot the Entire list of data points for a given initialTheta for EACH element in 
+thetaList, producing a plot so full of points that no useful information can be gathered from it except possibly for a relatively small range of initial thetas. 
+"""
 
 yAxisList = []
 xAxisList = []
@@ -11,6 +16,7 @@ averagePeriodList = []
 
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
+    global xAxisList, yAxisList
     currentOmega = initialOmega
     currentTime = initialTime
     thetaListPopulator = initialTheta
@@ -65,6 +71,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
+    global xAxisList, yAxisList
     if plotType == "energy":
         yAxisList.append(currentEnergy)
         xAxisList.append(currentTime)
