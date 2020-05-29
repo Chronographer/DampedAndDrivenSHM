@@ -64,10 +64,6 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
             yAxisList.append(currentOmega)
             xAxisList.append(currentTheta)
     elif plotType == "periodVsAmplitude":
-        exit("Error: Plot type 'periodVsAmplitude' is not a valid plot type for script 'shm_driven' \nThis plot type is only applicable with script 'periodCounter.py' ")
+        exit("Error: Plot type 'periodVsAmplitude' is not a valid plot type for script 'shm_driven' \nThis plot type is only applicable with script 'periodCounter.py'")
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")
-
-
-"""def separatrix(theta):
-    w = """

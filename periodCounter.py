@@ -82,5 +82,7 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
         xAxisList.append(currentTheta)
     elif plotType == "periodVsAmplitude":  # do nothing here, as this can only be plotted once for each initial theta, not once each time step.
         placeHolderValue = 0  # This variable does nothing, it is only here because I need to have some piece of code in the indent or it apparently does not count as an indent and throws a syntax error.
+    elif plotType == "poincare":
+        exit("Error: Plot type 'poincare' is not a valid plot type for script 'periodCounter.py' \nThis plot type is only applicable with script 'shm_driven.py'")
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")
