@@ -54,11 +54,14 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
 
             if currentTime >= plotStartTime:
                 handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
-
-        for index in range(0, len(singlePeriodTimeList)):
-            totalPeriodTime = totalPeriodTime + singlePeriodTimeList[i]
-        averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
+        if len(singlePeriodTimeList) > 0:
+            for index in range(0, len(singlePeriodTimeList)):
+                totalPeriodTime = totalPeriodTime + singlePeriodTimeList[index]
+            averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
+        else:
+            print("\nWARNING: Pendulum with an initial angle of " + str(thetaList[i]) + " radians did not complete a full period of oscillation in " + str(maxTime) + " seconds!\n  The period time for this initial angle is not correct! Try increasing 'maxTime' or decreasing 'maxTheta' in main_nonlinear_shm.py to fix this.")
         singlePeriodTimeList.clear()
+        totalPeriodTime = 0
         print("average period for initial theta of " + str(thetaList[i]) + " was: " + str(averagePeriodTime) + " seconds")
         averagePeriodList.append(averagePeriodTime)
 
@@ -67,7 +70,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         yAxisList = averagePeriodList
 
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
-    plt.plot(xAxisList, yAxisList, label="time step: " + str(timeStep) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(drivingFrequency))
+    plt.plot(xAxisList, yAxisList, label="time step: " + str(timeStep) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(round(drivingFrequency, 2)))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted

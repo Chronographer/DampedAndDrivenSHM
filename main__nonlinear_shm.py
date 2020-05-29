@@ -6,29 +6,29 @@ import amplitude_dependant_anharmonic
 import periodCounter
 import animated_pendulum
 
-initialTheta = 0.2
+initialTheta = 0.1
 initialOmega = 0.0
 initialAlpha = 0.0
 initialTime = 0.0
 
-maxTheta = np.pi      # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
+maxTheta = np.pi - 0.1     # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 thetaIncrement = 0.1  # This is only used in amplitude_dependant_anharmonic.py and periodCounter.py
 
 gravity = 9.8
 pendulumLength = 9.8
 mass = 1.0
-dragCoefficient = 0.5
-drivingForce = 1.2
+dragCoefficient = 0.0
+drivingForce = 0.0
 drivingFrequency = 2/3
 
 drivingPeriod = ((np.pi * 2) / drivingFrequency)
 
-plotStartTime = 1000 * drivingPeriod  # the time when the first point will be plotted on the graph
-timeStep = 0.1 * drivingPeriod
-maxTime = plotStartTime * 2
+plotStartTime = 1000 * drivingPeriod  # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
+timeStep = 0.1
+maxTime = 100
 
 clamp = True
-plotType = "energy"
+plotType = "periodVsAmplitude"
 
 
 if plotType == "energy":
@@ -43,7 +43,7 @@ elif plotType == "velocity":
 elif plotType == "acceleration":
     yAxisLabel = "Acceleration (m/s^2)"
     xAxisLabel = "Time (sec)"
-elif plotType == "phaseSpace" or "poincare":
+elif (plotType == "phaseSpace") or (plotType == "poincare"):
     yAxisLabel = "Velocity (m/s)"
     xAxisLabel = "Angle (rad)"
 elif plotType == "periodVsAmplitude":
