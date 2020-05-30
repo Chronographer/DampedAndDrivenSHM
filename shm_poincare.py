@@ -5,7 +5,8 @@ yAxisList = []
 xAxisList = []
 
 """
-This script is deprecated. It was originally made to produce a poincare plot, however this can now be accomplished by using shm_driven.py by setting plotType to 'poincare'.
+This script is deprecated. It was originally made to produce a poincare plot, however this can now be accomplished by 
+using shm_driven.py by setting plotType to 'poincare'.
 """
 
 
@@ -32,7 +33,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
             elif currentTheta < - np.pi:
                 currentTheta = currentTheta + 2 * np.pi
 
-        if periodTimer >= ((np.pi * 2) / drivingFrequency):  # 2 pi / drive freq
+        if periodTimer >= ((np.pi * 2) / drivingFrequency):
             periodTimer = 0
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)

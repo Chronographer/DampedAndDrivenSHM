@@ -1,5 +1,8 @@
 """Make a VPython simple pendulum with pedestal and stand.
 Moving system is ball attached to (potentially massive) bar.
+
+This is a modified version of a piece of example code provided by Dr. Cancio in the PHYS336 Computational Physics course
+at Ball State University during the spring 2020 semester.
 """
 from vpython import *
 
