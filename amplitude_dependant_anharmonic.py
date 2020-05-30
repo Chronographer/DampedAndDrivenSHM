@@ -2,7 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
-""" This program runs the driven and damped harmonic motion simulation for multiple initial values of theta """
+"""
+This program is deprecated. It will probably be removed in teh future.
+This program runs the driven and damped harmonic motion simulation for multiple initial values of theta 
+"""
 
 yAxisList = []
 xAxisList = []
