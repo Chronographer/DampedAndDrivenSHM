@@ -2,6 +2,12 @@ import matplotlib.pyplot as plt
 import matplotlib.animation
 import numpy as np
 
+""" 
+This script produces an animated matplotlib phase space plot. That is, it plots each point on the matplotlib window as
+it is computed, rather than all at once. At the time I made this, I did not realize that it is incredibly easy to do
+this with vpython's plotting features.
+"""
+
 
 def data_gen(currentTime=0):
     currentOmega = 0.0

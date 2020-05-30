@@ -36,8 +36,8 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
         if currentTime > plotStartTime:
             handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, currentForce, drivingFrequency)
 
-    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
-    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="drive force: " + str(drivingForce))
+    plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="initial theta: " + str(np.round(initialTheta, 2)) + "\ndrive force: " + str(round(drivingForce, 2)) + "\ndrive frequency: " + str(np.round(drivingFrequency, 2)) + "\ndrag coefficient: " + str(dragCoefficient) + "\ntime step: " + str(timeStep))
+    #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label="drive force: " + str(drivingForce))
     #plt.plot(xAxisList, yAxisList, label="initial theta: " + str(np.round(initialTheta, 2)) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(np.round(drivingFrequency, 2)) + "\n" + "time step: " + str(timeStep))
     #plt.plot(xAxisList, yAxisList, label="drive force: " + str(drivingForce))
 
