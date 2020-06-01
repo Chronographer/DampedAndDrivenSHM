@@ -17,19 +17,18 @@ averagePeriodList = []
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
     global xAxisList, yAxisList
-    currentOmega = initialOmega
-    currentTime = initialTime
     thetaListPopulator = initialTheta
     naturalFrequency = np.sqrt(gravity / pendulumLength)
-    currentPeriodStartTime = 0
     totalPeriodTime = 0.0
+
     if plotType != "periodVsAmplitude":
-        print("\nWARNING: script 'periodCounter.py' is primarily intended to be run using plotType 'periodVsAmplitude'\nOther plot types may be used, however the plots produced are likely to be highly complex and/or borderline unreadable.\n")
-        print("INFORMATION: You are currently running script 'periodCounter.py' with plotType '" + plotType + "'\n")
+        print("\nWARNING: script 'periodCounter.py' is primarily intended to be run using plotType 'periodVsAmplitude'\nOther plot types may be used, however the plots produced are likely to be highly complex and/or borderline unreadable.")
+        print("\nINFORMATION: You are currently running script 'periodCounter.py' with plotType '" + plotType + "'\n")
 
     while thetaListPopulator <= maxTheta:
         thetaList.append(thetaListPopulator)
         thetaListPopulator = thetaListPopulator + thetaIncrement
+
     for i in range(0, len(thetaList)):
         currentTheta = thetaList[i]
         currentOmega = initialOmega

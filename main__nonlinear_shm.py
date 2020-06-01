@@ -16,17 +16,17 @@ gravity = 9.8
 pendulumLength = 9.8
 mass = 1.0
 dragCoefficient = 0.5
-drivingForce = 1.2
+drivingForce = 0
 drivingFrequency = 2/3
 
 drivingPeriod = ((np.pi * 2) / drivingFrequency)
 
 plotStartTime = 1000  # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
 timeStep = 0.01
-maxTime = 1100
+maxTime = 100
 
 clamp = True
-plotType = "phaseSpace"
+plotType = "periodVsAmplitude"
 
 
 if plotType == "energy":
@@ -54,8 +54,8 @@ else:
     yAxisLabel = "y axis label was not defined!"
     xAxisLabel = "x axis label was not defined!"
 
-shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
-#periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+#shm_driven.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
+periodCounter.run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 #animated_pendulum.run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType)
 
 plt.legend(loc="best")
