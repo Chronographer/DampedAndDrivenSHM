@@ -23,6 +23,9 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
     naturalFrequency = np.sqrt(gravity / pendulumLength)
     currentPeriodStartTime = 0
     totalPeriodTime = 0.0
+    if plotType != "periodVsAmplitude":
+        print("\nWARNING: script 'periodCounter.py' is primarily intended to be run using plotType 'periodVsAmplitude'\nOther plot types may be used, however the plots produced are likely to be highly complex and/or borderline unreadable.\n")
+        print("INFORMATION: You are currently running script 'periodCounter.py' with plotType '" + plotType + "'\n")
 
     while thetaListPopulator <= maxTheta:
         thetaList.append(thetaListPopulator)

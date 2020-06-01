@@ -21,11 +21,11 @@ drivingFrequency = 2/3
 
 drivingPeriod = ((np.pi * 2) / drivingFrequency)
 
-plotStartTime = 0  # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
-timeStep = 0.04
-maxTime = 500
+plotStartTime = 1000  # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
+timeStep = 0.01
+maxTime = 1100
 
-clamp = False
+clamp = True
 plotType = "phaseSpace"
 
 
