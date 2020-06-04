@@ -29,7 +29,7 @@ def makePendulum(pendulumLength, radius_sphere):
     pedestalHeight = 1.3 * pendulumLength
     pedestalWidth = 0.1
     baseThickness = 0.05
-    offset = 4.0 * radius_sphere     # from center of pedestal to center of bar
+    offset = 4.0 * radius_sphere  # from center of pedestal to center of bar
     baseWidth = 4.0 * offset
     barTop = vector(0, 0, 0)
 
@@ -58,7 +58,7 @@ def makePendulum(pendulumLength, radius_sphere):
     return pendulum
 
 
-def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency):
     import vpython
     import numpy as np
     #scene.title = "Simple Pendulum"
@@ -70,7 +70,6 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentTheta = initialTheta
     currentOmega = initialOmega
     naturalFrequency = np.sqrt(gravity / pendulumLength)
-    lastTheta = 0
     pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta, axis=vector(0, 0, 1))
     vpython.sleep(1)
 

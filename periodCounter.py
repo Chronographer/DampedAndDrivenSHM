@@ -25,7 +25,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         print("\nWARNING: script 'periodCounter.py' is primarily intended to be run using plotType 'periodVsAmplitude'\nOther plot types may be used, however the plots produced are likely to be highly complex and/or borderline unreadable.")
         print("\nINFORMATION: You are currently running script 'periodCounter.py' with plotType '" + plotType + "'\n")
 
-    while thetaListPopulator <= maxTheta:
+    while thetaListPopulator <= maxTheta:  # Create a list containing all initial angles to be run.
         thetaList.append(thetaListPopulator)
         thetaListPopulator = thetaListPopulator + thetaIncrement
 
@@ -57,7 +57,8 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
 
             if currentTime >= plotStartTime:
                 handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, currentForce)
-        if len(singlePeriodTimeList) > 0:
+
+        if len(singlePeriodTimeList) > 0:  # this averages the length of the period for a given initial angle, adds that average to a list, but only does so if there is at least one measured period length. see print statement for details.
             for index in range(0, len(singlePeriodTimeList)):
                 totalPeriodTime = totalPeriodTime + singlePeriodTimeList[index]
             averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
@@ -97,7 +98,7 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
         yAxisList.append(currentForce)
         xAxisList.append(currentTheta)
     elif plotType == "periodVsAmplitude":  # do nothing here, as this can only be plotted once for each initial theta, not once each time step.
-        placeHolderValue = 0  # This variable does nothing, it is only here because I need to have some piece of code in the indent or it apparently does not count as an indent and throws a syntax error.
+        placeHolderValue = 0  # This variable does nothing, it is only here because I need to have some piece of code in the indent or it apparently does not count as an indent and throws a syntax error. I am open to suggestions on a better solution than this.
     elif plotType == "poincare":
         exit("Error: Plot type 'poincare' is not a valid plot type for script 'periodCounter.py' \nThis plot type is only applicable with script 'shm_driven.py'")
     else:

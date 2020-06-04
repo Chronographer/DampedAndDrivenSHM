@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 """
-This program is deprecated. It will probably be removed in teh future.
+THIS SCRIPT IS DEPRECATED. It will probably be removed in the future.
 This program runs the driven and damped harmonic motion simulation for multiple initial values of theta 
 """
 
@@ -16,8 +16,6 @@ colorList = ['b', 'g', 'r', 'c', 'm', 'y', 'b']
 
 
 def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, plotStartTime, clamp, plotType):
-    currentOmega = initialOmega
-    currentTime = initialTime
     thetaListPopulator = initialTheta
     naturalFrequency = np.sqrt(gravity / pendulumLength)
 
@@ -49,6 +47,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
 
             if currentTime > plotStartTime:
                 handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha)
+
         plt.plot(xAxisList, yAxisList, colorDotList[i], ms=1.25, label="initial theta: " + str(round(thetaList[i], 3)))  # plots with points instead of a line
         #plt.plot(xAxisList, yAxisList, fmt='[.][tupleColorList[i]]', label="initial theta: " + str(round(thetaList[i], 3)))
         #plt.plot(xAxisList, yAxisList, label=plotType)
