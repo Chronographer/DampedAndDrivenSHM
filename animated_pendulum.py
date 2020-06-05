@@ -15,7 +15,7 @@ def makePendulum(pendulumLength, radius_sphere):
     radius_sphere -- radius of spherical bob at end
     OUTPUT
     pendulum -- visual pendulum object with
-      Fixed:
+      Static:
       -- base -- box forming floor of device
       -- pedestal -- box acting as "stand" from which pendulum rotates
       -- axle -- axle on which pendulum rotates
@@ -34,23 +34,23 @@ def makePendulum(pendulumLength, radius_sphere):
     barTop = vector(0, 0, 0)
 
     xBar = (length_display - radius_sphere) / 2.0  # The initial x position of the bar
-    xBall = pendulumLength + radius_sphere / 2.0  # The initial x position of the ball
+    xBall = pendulumLength + radius_sphere / 2.0   # The initial x position of the ball
     pedestalColor = vector(0.4, 0.4, 0.5)
 
     scene.center = barTop - vector(0, pendulumLength / 2, 0)
     scene.height = scene.width = 400
 
-    #construct fixed apparatus
+    # construct fixed apparatus
     pedestal = box(pos=barTop-vector(0, pedestalHeight/2.0, offset), height=1.1*pedestalHeight, length=pedestalWidth, width=pedestalWidth, color=pedestalColor)
     base = box(pos=barTop-vector(0, pedestalHeight+baseThickness/2.0, offset), height=baseThickness, length=baseWidth, width=baseWidth, color=pedestalColor)
     axle = cylinder(pos=barTop-vector(0, 0, offset), axis=vector(0, 0, offset), radius=radius_sphere/4.0, color=color.yellow)
 
-    #construct moving portion as a COMPOUND, originally sticks out along x-axis
+    # construct moving portion as a COMPOUND, originally sticks out along x-axis
     bar = box(pos=vector(xBar, 0, 0), size=vector(length_display, barDiameter, barDiameter), color=color.red)
     ball = sphere(pos=vector(xBall, 0, 0), radius=radius_sphere, color=color.green)
     pendulum = compound([bar, ball])
 
-    #point the frame in -y direction (which will define theta=0).
+    # point the frame in -y direction (which will define theta=0).
     pendulum.axis = vector(0, -1, 0)
     pendulum.pos = vector(0, -0.5*length_display, 0)
     print(pendulum)
@@ -58,10 +58,10 @@ def makePendulum(pendulumLength, radius_sphere):
     return pendulum
 
 
-def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency):
+def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, dragCoefficient, drivingForce, drivingFrequency):
     import vpython
     import numpy as np
-    #scene.title = "Simple Pendulum"
+    scene.title = "Complex Pendulum"
     barLength = 0.5
     sphereRadius = 0.05
     pendulum = makePendulum(barLength, sphereRadius)
@@ -74,11 +74,9 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     vpython.sleep(1)
 
     while currentTime <= maxTime:
-        currentAlpha = (gravity * currentTheta) / pendulumLength
         currentOmega = currentOmega + (-naturalFrequency**2 * np.sin(currentTheta) - dragCoefficient * currentOmega + drivingForce * np.sin(drivingFrequency * currentTime)) * timeStep
         lastTheta = currentTheta
         currentTheta = currentTheta + currentOmega * timeStep
-        currentEnergy = 0.5 * mass * pendulumLength**2 * currentOmega**2 + 0.5 * mass * gravity * pendulumLength * currentTheta**2
         currentTime = currentTime + timeStep
         rate(60)
         pendulum.rotate(origin=vector(0, 0, 0), angle=currentTheta-lastTheta, axis=vector(0, 0, 1))
