@@ -5,7 +5,7 @@ yAxisList = []
 xAxisList = []
 
 """
-This script is deprecated. It was originally made to produce a poincare plot, however this can now be accomplished by 
+THIS SCRIPT IS DEPRECATED. It was originally made to produce a poincare plot, however this can now be accomplished by 
 using driven_damped.py by setting plotType to 'poincare'.
 """
 
