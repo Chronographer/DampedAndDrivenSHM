@@ -5,7 +5,7 @@ import numpy as np
 
 yAxisList = []
 xAxisList = []
-periodTimer = 0.0
+periodTimer = 0.0  # stores the current elapsed time in the current drive period. Used for plotType 'poincare'.
 
 
 def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeStep, maxTime, mass, dragCoefficient, drivingForce, drivingFrequency, phaseShift, plotStartTime, clamp, plotType):
@@ -15,7 +15,7 @@ def run(gravity, pendulumLength, initialTheta, initialOmega, initialTime, timeSt
     currentTime = initialTime
 
     totalSteps = maxTime / timeStep
-    inverseTotalSteps = 1 / totalSteps
+    inverseTotalSteps = 1 / totalSteps  # These two variables are only used to compute the current progress of the computation. The inverse values are used because it is faster to multiply numbers than it is to divide them, so in theory computing the inverse once here and using that value is faster than dividing by the original value many times. In other words, this is intended to reduce any performance impacts that enabling the progress report has on the total speed of the program.
     inverseTimeStep = 1 / timeStep
     lastProgress = 0
     showProgress = True  # Set this to True to display the percentage of the current computation in 1% intervals in the console/terminal. Set it to False to disable this feature.
