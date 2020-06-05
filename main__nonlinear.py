@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import shm_driven
+import driven_damped
 import periodCounter
 import animated_pendulum
 

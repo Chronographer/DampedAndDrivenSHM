@@ -63,7 +63,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
                 totalPeriodTime = totalPeriodTime + singlePeriodTimeList[index]
             averagePeriodTime = totalPeriodTime / len(singlePeriodTimeList)
         else:
-            print("\nWARNING: Pendulum with an initial angle of " + str(thetaList[i]) + " radians did not complete a full period of oscillation in " + str(maxTime) + " seconds!\n  The period time for this initial angle is not correct! Try increasing 'maxTime' or decreasing 'maxTheta' in main_nonlinear_shm.py to fix this.")
+            print("\nWARNING: Pendulum with an initial angle of " + str(thetaList[i]) + " radians did not complete a full period of oscillation in " + str(maxTime) + " seconds!\n  The period time for this initial angle is not correct! Try increasing 'maxTime' or decreasing 'maxTheta' in main__nonlinear.py to fix this.")
         singlePeriodTimeList.clear()
         totalPeriodTime = 0
         print("average period for initial theta of " + str(thetaList[i]) + " was: " + str(averagePeriodTime) + " seconds")
@@ -100,6 +100,6 @@ def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOm
     elif plotType == "periodVsAmplitude":  # do nothing here, as this can only be plotted once for each initial theta, not once each time step.
         placeHolderValue = 0  # This variable does nothing, it is only here because I need to have some piece of code in the indent or it apparently does not count as an indent and throws a syntax error. I am open to suggestions on a better solution than this.
     elif plotType == "poincare":
-        exit("Error: Plot type 'poincare' is not a valid plot type for script 'periodCounter.py' \nThis plot type is only applicable with script 'shm_driven.py'")
+        exit("Error: Plot type 'poincare' is not a valid plot type for script 'periodCounter.py' \nThis plot type is only applicable with script 'driven_damped.py'")
     else:
         exit("Error: '" + str(plotType) + "' is not a valid plot type!")
