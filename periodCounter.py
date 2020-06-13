@@ -74,7 +74,7 @@ def run(gravity, pendulumLength, initialTheta, maxTheta, thetaIncrement, initial
         yAxisList = averagePeriodList
 
     #plt.plot(xAxisList, yAxisList, 'b.', ms=1.25, label=plotType)  # plots with points instead of a line
-    plt.plot(xAxisList, yAxisList, label="time step: " + str(timeStep) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(round(drivingFrequency, 2)) + "\ndragCoefficient: " + str(dragCoefficient))
+    plt.plot(xAxisList, yAxisList, label="time step: " + str(timeStep) + "\n" + "drive force: " + str(drivingForce) + "\n" + "drive frequency: " + str(round(drivingFrequency, 2)) + "\ndrag coefficient: " + str(dragCoefficient))
 
 
 def handlePlotType(plotType, currentTime, currentEnergy, currentTheta, currentOmega, currentAlpha, currentForce):  # this makes the graph axis labels and legend labels automatically change to reflect what is actually being plotted
