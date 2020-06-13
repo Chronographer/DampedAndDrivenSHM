@@ -22,12 +22,12 @@ phaseShift = 0  # Only used with plot type 'poincare'. Determines the amount to 
 
 drivingPeriod = ((np.pi * 2) / drivingFrequency)
 
-plotStartTime = 1000 * drivingPeriod   # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
-timeStep = 0.01 * drivingPeriod
-maxTime = 2000 * drivingPeriod
+plotStartTime = 1000   # the time when the first point will be plotted on the graph. This variable has no effect for plotType 'periodVsAmplitude'.
+timeStep = 0.01
+maxTime = 1100
 
 clamp = True
-plotType = "poincare"
+plotType = "phaseSpace"
 
 if plotStartTime >= maxTime:
     exit("Error: plotStartTime is greater than maxTime!\n(" + str(plotStartTime) + " >= " + str(maxTime) + ")\nThis will produce a plot with no data!")  # Technically, if you are using plotType 'periodVsAmplitude" this isn't a problem, but making this recognise that without preventing it from recognizing other issues is more disruptive than it is to just force the user to always make plotStartTime less than maxTime.
